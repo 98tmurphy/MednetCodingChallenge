@@ -25,7 +25,8 @@ app.get("/check", (req, res) => {
     var response = {grade: ''}
 
     //make sure the units are proper and the values are numbers
-   if(!(inputUnit == 'c' || inputUnit == 'f' || inputUnit == 'k' || inputUnit == 'k')){
+    if(!(inputUnit == 'c' || inputUnit == 'f' || inputUnit == 'k' || inputUnit == 'k') || 
+       !(targetUnit == 'c' || inputUnit == 'f' || inputUnit == 'k' || inputUnit == 'k')){
         response.grade = 'Invalid'
     }
     if(isNaN(inputTemp)){

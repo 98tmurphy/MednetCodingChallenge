@@ -11,13 +11,17 @@ app.listen(
 app.get("/check", (req, res) => {
     /*
         req variables:
-            ?iu - the input unit
-            ?it - input temp
-            ?tu - target temp
-            ?sa - student answer
+            ?input_unit      - the input unit
+            ?input_temp      - input temp
+            ?target_unit     - target temp
+            ?sstudent_answer - student answer
 
     */
-    
+    if(!(('input_unit' in req.query) && ('input_temp' in req.query) && ('target_unit' in req.query) && ('student_answer' in req.query))){
+        
+        res.status(500).send()
+        return
+    }
     var inputUnit     = req.query.input_unit
     var inputTemp     =parseFloat(req.query.input_temp)
     var targetUnit    = req.query.target_unit
@@ -25,8 +29,11 @@ app.get("/check", (req, res) => {
     var response = {grade: ''}
 
     //make sure the units are proper and the values are numbers
-    if(!(inputUnit == 'c' || inputUnit == 'f' || inputUnit == 'k' || inputUnit == 'k') || 
-       !(targetUnit == 'c' || inputUnit == 'f' || inputUnit == 'k' || inputUnit == 'k')){
+    if(!(inputUnit == 'c' || inputUnit == 'f' || inputUnit == 'k' || inputUnit == 'r')){
+        response.grade = 'Invalid'
+    }
+    if(!(targetUnit == 'c' || targetUnit == 'f' || targetUnit == 'k' || targetUnit == 'r')){
+        console.log('here')
         response.grade = 'Invalid'
     }
     if(isNaN(inputTemp)){
@@ -85,4 +92,5 @@ app.get("/check", (req, res) => {
         response.grade = studentAnswer == Math.round(tempConvert.rankineToKelvin(inputTemp)) ? 'Correct':'Incorrect'
     }
     res.status(200).send(response)
+    return
 })  

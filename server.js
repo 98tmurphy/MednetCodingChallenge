@@ -17,6 +17,7 @@ app.get("/check", (req, res) => {
             ?sstudent_answer - student answer
 
     */
+    //makes sure url has all the proper queries
     if(!(('input_unit' in req.query) && ('input_temp' in req.query) && ('target_unit' in req.query) && ('student_answer' in req.query))){
         
         res.status(500).send()

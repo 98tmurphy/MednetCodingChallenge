@@ -18,10 +18,10 @@ app.get("/check", (req, res) => {
 
     */
     
-    var inputUnit     = req.query.iu
-    var inputTemp     =parseFloat(req.query.it)
-    var targetUnit    = req.query.tu
-    var studentAnswer = Math.round(parseFloat(req.query.sa))
+    var inputUnit     = req.query.input_unit
+    var inputTemp     =parseFloat(req.query.input_temp)
+    var targetUnit    = req.query.target_unit
+    var studentAnswer = Math.round(parseFloat(req.query.student_answer))
     var response = {grade: ''}
 
     //make sure the units are proper and the values are numbers

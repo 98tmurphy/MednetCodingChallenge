@@ -92,6 +92,7 @@ app.get("/check", (req, res) => {
     else if(inputUnit == 'r' && targetUnit == 'k'){
         response.grade = studentAnswer == Math.round(tempConvert.rankineToKelvin(inputTemp)) ? 'Correct':'Incorrect'
     }
+    console.log("answer checked")
     res.status(200).send(response)
     return
 })  
